@@ -1,0 +1,29 @@
+{
+  "name": "Cinema Movies Rating",
+  "description": "Extension to add movies ratings to cinema pages.",
+  "version": "0.0.0.1",
+  "manifest_version": 2,
+  "permissions": ["activeTab"],
+  "icons": { 
+      "16": "icon/16.png",
+      "48": "icon/48.png",
+      "128": "icon/128.png" 
+    },
+  "content_scripts": [
+    {
+      "matches": ["*://www.yesplanet.co.il/*"],
+      "include_glob": ["*://www.yesplanet.co.il/*buy-tickets-by-cinema*"],
+      "run_at": "document_idle",
+      "js": [
+          "thirdParty/jquery-3.6.0.min.js",
+          "utilities.js",
+          "imdb-ranker.js",
+          "movie.js",
+          "rated-movie.js",
+          "imdb-ranker.js",
+          "engine.js",
+          "yesplanet-add-ranking.js"
+        ]
+    }
+  ]
+}
