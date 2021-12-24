@@ -16,7 +16,7 @@ class YesPlanetWebsite {
 
     get movies() {
         const movieRows = this.containers
-        console.log("movie rows: ", movieRows)
+        console.log(movieRows.length, "movie rows: ", movieRows)
         const movies = []
 
         for (let currentMovieRow of movieRows) {
@@ -115,12 +115,17 @@ class YesPlanetWebsite {
     }
 
     onDOMNodeInserted(event) {
-        console.log('dom node inserted:', event, event.relatedNode.classList, this)
+        let rows = []
+        if (hasClass(event.relatedNode, 'container') && hasClass(event.srcElement, 'movie-row')) {
+            rows.push(event.srcElement)
+        } else if (hasClass(event.relatedNode, 'qb-by-cinema') && hasClass(event.srcElement, 'qb-list-by-list')) {
+            rows.push(...event.srcElement.getElementsByClassName('movie-row'))
+        }
 
-        if (event.relatedNode.classList.contains('container') && event.srcElement.classList.contains('movie-row')) {
-            let movie = YesPlanetWebsite.movieFromRow(event.srcElement)
-            console.log("Movie inserted:", movie)
-            this._moviesChangeEventListeners.forEach((callbackAndArgument) => callbackAndArgument[0](callbackAndArgument[1], movie))
+        for (let row of rows) {
+            let movie = YesPlanetWebsite.movieFromRow(row)
+            console.log("Movie inserted:", movie, 'calling', this._moviesChangeEventListeners.length, 'callbacks')
+            this._moviesChangeEventListeners.forEach((callbackAndArgument) => callbackAndArgument[0](callbackAndArgument[1], movie))                    
         }
     }
 }

@@ -4,7 +4,7 @@ function getSingleElementByClassName(element, className) {
     const elements = element.getElementsByClassName(className)
 
     if (elements.length != 1) {
-        console.error("Expected 1 ", className, "in", element,", found ", 
+        console.info("Expected 1 ", className, "in", element,", found ", 
         elements.length, ": ", elements)
 
         // TODO: throw exception
@@ -12,6 +12,10 @@ function getSingleElementByClassName(element, className) {
     }
 
     return elements[0]
+}
+
+function hasClass(node, className) {
+    return node.classList !== undefined && node.classList.contains(className)
 }
 
 function getLast(a) {

@@ -109,6 +109,12 @@ class IMDBRanker {
         }
 
         let rating = getSingleElementByClassName(ratingPlugin, 'rating')
+
+        if (rating === null) {
+            console.error('Not found rank for ', movie, 'by', this)
+            return null
+        }
+
         let ratingString = rating.firstElementChild.previousSibling.data
         console.log("rating: ", ratingString)
         let ratingFloat = parseFloat(ratingString)
