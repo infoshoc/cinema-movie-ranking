@@ -11,8 +11,8 @@
     },
   "content_scripts": [
     {
-      "matches": ["*://www.yesplanet.co.il/*"],
-      "include_glob": ["*://www.yesplanet.co.il/*buy-tickets-by-cinema*"],
+      "matches": ["*://www.planetcinema.co.il/*"],
+      "include_glob": ["*://www.planetcinema.co.il/*buy-tickets-by-cinema*"],
       "run_at": "document_idle",
       "js": [
           "thirdParty/jquery-3.6.0.min.js",
